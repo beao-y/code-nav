@@ -18,19 +18,19 @@ export default {
     return h(Layout, {})
   },
   enhanceApp({ app, router, siteData }) {
-
     app.provide('DEV', process.env.NODE_ENV === 'development')
     app.component('NavLinks', NavLinks)
 
     if (typeof window !== 'undefined') {
       watch(
-          () => router.route.data.relativePath,
-          () =>
-              updateHomePageStyle(
-                  /* /vitepress-nav-template/ 是为了兼容 GitHub Pages */
-                  location.pathname === '/' || location.pathname === '/vitepress-nav-template/',
-              ),
-          { immediate: true },
+        () => router.route.data.relativePath,
+        () =>
+          updateHomePageStyle(
+            /* /vitepress-nav-template/ 是为了兼容 GitHub Pages */
+            location.pathname === '/' ||
+              location.pathname === '/vitepress-nav-template/'
+          ),
+        { immediate: true }
       )
     }
   }
@@ -46,7 +46,6 @@ if (typeof window !== 'undefined') {
     document.documentElement.classList.add('browser-safari')
   }
 }
-
 
 // Speed up the rainbow animation on home page
 function updateHomePageStyle(value: boolean) {
@@ -66,4 +65,3 @@ function updateHomePageStyle(value: boolean) {
     homePageStyle = undefined
   }
 }
-
