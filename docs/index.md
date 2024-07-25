@@ -19,29 +19,29 @@ hero:
       link: https://search.bilibili.com/all?keyword=%E7%85%8E%E9%A5%BC&from_source=webtop_search&spm_id_from=333.1007&search_source=5
 
 features:
-  - icon: 📖
-    title: 编程宝典
-    details: 整理前端常用知识点<small>（面试八股文）</small><br />如有异议按你的理解为主，不接受反驳
+  - icon: 🙈
+    title: 面试宝典
+    details: 整理常用基础知识点<small>（八股文）</small><br />只要八股文背的好，面试随便找
     link: https://notes.fe-mm.com/fe/javascript/types
     linkText: 基础知识
-  - icon: 📘
-    title: 源码阅读
-    details: 了解各种库的实现原理<br />学习其中的小技巧和冷知识
+  - icon: 🔩
+    title: 技术知识
+    details: 开发中的重点知识<br />简单易学、实用重要、可灵活复用
     link: https://notes.fe-mm.com/analysis/utils/only-allow
-    linkText: 源码阅读
-  - icon: 💡
-    title: Workflow
-    details: 在工作中学到的一切<small>（常用库/工具/奇淫技巧等）</small><br />配合 CV 大法来更好的摸鱼
+    linkText: 知识碎片
+  - icon: 📝
+    title: 随手笔记
+    details: 好记性不如烂笔头<small>（CV 大法）</small><br />日常工作中的碎片化知识
     link: https://notes.fe-mm.com/workflow/utils/library
-    linkText: 常用工具库
+    linkText: 日常笔记
   - icon: ⚡️
-    title: 提效工具
-    details: 工欲善其事，必先利其器<br />记录开发和日常使用中所用到的软件、插件、扩展等
+    title: 常用工具
+    details: 工欲善其事，必先利其器<br />记录所用到的软件、插件、扩展等使用方法
     link: https://notes.fe-mm.com/efficiency/online-tools
-    linkText: 提效工具
+    linkText: 常用工具
   - icon: 🤡
-    title: 踩坑记录
-    details: 那些年我们踩过的坑<br />总有一些让你意想不到的问题
+    title: 大脑燃烧机
+    details: 常在河边走，哪有不湿鞋<br/>修不完的 BUG，踩不完的坑，Salute！！！
     link: https://notes.fe-mm.com/pit/npm
     linkText: 踩坑记录
   - icon: 🙋‍♂

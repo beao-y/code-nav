@@ -43,10 +43,11 @@ function getList(params: string[], path1: string, pathname: string): any[] {
         text: name.split('.')[0],
         link: `/${pathname}/${name}`,
         // 导航高亮问题
-        activeMatch: `/${pathname.split('/')[0]}/`
+        activeMatch: `/${pathname}/${name.split('.')[0]}`
       })
     }
   }
+  console.log(res)
   return res
 }
 
