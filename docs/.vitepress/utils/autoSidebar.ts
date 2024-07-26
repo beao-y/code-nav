@@ -47,7 +47,6 @@ function getList(params: string[], path1: string, pathname: string): any[] {
       })
     }
   }
-  console.log(res)
   return res
 }
 
