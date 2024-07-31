@@ -1,0 +1,14 @@
+# 配置文件的版本为3
+version: '3'
+
+# 服务列表
+services:
+  # 服务名称为 DockerDemo
+  Docker-Demo:
+    # 镜像名称
+    image: code-nav
+    # 容器名称
+    container_name: code-nav
+    # 端口映射，7000 端口为主机端口，80 端口为容器端口
+    ports:
+      - "8080:80"

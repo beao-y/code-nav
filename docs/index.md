@@ -22,27 +22,27 @@ features:
   - icon: 🙈
     title: 面试宝典
     details: 整理常用基础知识点<small>（八股文）</small><br />只要八股文背的好，面试随便找
-    link: https://notes.fe-mm.com/fe/javascript/types
+    link: /nav
     linkText: 基础知识
   - icon: 🔩
     title: 技术知识
     details: 开发中的重点知识<br />简单易学、实用重要、可灵活复用
-    link: https://notes.fe-mm.com/analysis/utils/only-allow
+    link: /nav
     linkText: 知识碎片
   - icon: 📝
     title: 随手笔记
     details: 好记性不如烂笔头<small>（CV 大法）</small><br />日常工作中的碎片化知识
-    link: https://notes.fe-mm.com/workflow/utils/library
+    link: /daily
     linkText: 日常笔记
   - icon: ⚡️
     title: 常用工具
     details: 工欲善其事，必先利其器<br />记录所用到的软件、插件、扩展等使用方法
-    link: https://notes.fe-mm.com/efficiency/online-tools
+    link: /tools/工具安装与配置/Docker配置
     linkText: 常用工具
   - icon: 🤡
     title: 大脑燃烧机
     details: 常在河边走，哪有不湿鞋<br/>修不完的 BUG，踩不完的坑，Salute！！！
-    link: https://notes.fe-mm.com/pit/npm
+    link: /daily
     linkText: 踩坑记录
   - icon: 🙋‍♂
     title: 斜杠老 Baby。
