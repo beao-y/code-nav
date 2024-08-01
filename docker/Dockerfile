@@ -1,5 +1,5 @@
 # 使用 Node 镜像作为基础
-FROM node:20 AS build-stage
+FROM node:18-alpine AS build-stage
 
 # 设置工作目录
 WORKDIR /app
