@@ -1,10 +1,13 @@
 # 使用 Node 镜像作为基础
-FROM node:18-alpine AS build-stage
+FROM node:20-alpine AS build-stage
+
+# 项目中依赖 git
+RUN apk add --no-cache git
 
 # 设置工作目录
 WORKDIR /app
 
-# 复制 package.json 和 yarn.lock/npm-shrinkwrap.json 到工作目录
+# 复制 package.json 和 yarn.lock 到工作目录
 COPY package.json yarn.lock ./
 
 # 安装依赖
@@ -14,7 +17,7 @@ RUN yarn install --frozen-lockfile
 COPY . .
 
 # 构建项目
-RUN yarn build
+RUN yarn docs:build
 
 # 使用 Nginx 镜像作为生产服务器
 FROM nginx:alpine
