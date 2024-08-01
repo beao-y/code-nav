@@ -3,8 +3,8 @@ version: '3'
 
 # 服务列表
 services:
-  # 服务名称为 DockerDemo
-  Docker-Demo:
+  # 服务名称为 Docs
+  Docs:
     # 镜像名称
     image: code-nav
     # 容器名称

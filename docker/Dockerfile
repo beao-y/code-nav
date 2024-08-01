@@ -1,17 +1,28 @@
-# 以最新版的 nginx 镜像为基础制作镜像
-FROM nginx:latest
+# 使用 Node 镜像作为基础
+FROM node:20-alpine as build-stage
 
-# 设置工作目录，设置的是镜像中的目标目录
-WORKDIR /usr/share/nginx/html
+# 设置工作目录
+WORKDIR /app
 
-# 复制静态资源，复制当前项目的内容到镜像中，即工作目录 WORKDIR
-COPY ../dist/ .
+# 复制 package.json 和 yarn.lock/npm-shrinkwrap.json 到工作目录
+COPY package.json yarn.lock ./
 
-# 复制 nginx 配置文件
-COPY ./docker/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+# 安装依赖
+RUN yarn install --frozen-lockfile
 
-# 暴露端口，暴露的是镜像中的 nginx 端口，可以自定义
-EXPOSE 80
+# 复制所有文件到工作目录
+COPY . .
 
-# 启动 nginx
+# 构建项目
+RUN yarn build
+
+# 使用 Nginx 镜像作为生产服务器
+FROM nginx:alpine
+
+# 将构建输出目录中的文件复制到 Nginx 服务器的默认公共目录
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+
+# Nginx 默认运行在80端口，所以无需暴露端口
+
+# 容器启动时自动运行 Nginx
 CMD ["nginx", "-g", "daemon off;"]
