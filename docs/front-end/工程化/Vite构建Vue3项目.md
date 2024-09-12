@@ -63,7 +63,7 @@ export default antfu(
     jsonc: false,
     yaml: false,
     
-    // `.eslintignore` is no longer supported in Flat config, use `ignores` instead
+    // 取代旧的`.eslintignore`
     ignores: [
       '**/fixtures',
       // ...globs
