@@ -623,11 +623,20 @@ export default defineConfig({
 ```
 vite.config.mts 配置
 ```ts
+import { presetAttributify, presetIcons, presetUno } from 'unocss'
+import UnoCSS from 'unocss/vite'
+
 plugins: [
     UnoCSS({
         presets: [presetUno(), presetAttributify(), presetIcons()],
     }),
 ]
+```
+
+main.ts
+```javascript
+// main.ts 中添加
+import 'uno.css'
 ```
 
 ## 集成 Ant Design Vue

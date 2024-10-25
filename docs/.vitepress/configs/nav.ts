@@ -8,7 +8,10 @@ export const nav: DefaultTheme.Config['nav'] = [
   {
     text: '随手记',
     activeMatch: '/daily/',
-    items: [{ text: '日常笔记', link: '/daily/', activeMatch: '/daily/' }]
+    items: [
+      { text: '日常笔记', link: '/daily/', activeMatch: '/daily/' },
+      { text: '踩坑记录', link: '/hole/', activeMatch: '/hole/' }
+    ]
   },
   {
     text: 'Tools',
