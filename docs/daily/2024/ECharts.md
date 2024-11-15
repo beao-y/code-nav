@@ -355,3 +355,198 @@ onBeforeUnmount(() => {
   resizeObservers.forEach((observer: any) => observer.disconnect())
 })
 ```
+
+## ECharts 配合多选框
+```html
+<div class="process-check">
+  <el-checkbox-group v-model="checkList" class="flex flex-wrap">
+    <div class="w-1/4" v-for="v in checkGroup" :key="v.value">
+      <el-checkbox :value="v.value">
+        <span>{{ v.key }}</span>
+      </el-checkbox>
+    </div>
+  </el-checkbox-group>
+</div>
+
+<div class="flex flex-wrap chart-ctn">
+  <div
+    v-for="(v, index) in checkGroup"
+    class="chart-item card-inset"
+    :class="!v.visible ? 'hidden' : ''"
+    :key="v.value"
+  >
+    <div
+      style="margin: 20px 0; height: 300px"
+      :ref="
+              (el) => {
+                if (el) chartRef[index] = el
+              }
+            "
+    />
+  </div>
+</div>
+```
+
+```ts
+let chartInstances: any = []
+let resizeObservers: any = null
+
+const checkList = ref<string[]>([])
+const checkGroup = ref([
+  {
+    key: '图表1',
+    value: '1',
+    visible: false,
+    data: [0.1, 0.5, 0.4, 0.2, 0.26, 0.45, 0.55]
+  },
+  {
+    key: '图表2',
+    value: '2',
+    visible: false,
+    data: [0.1, 0.5, 0.4, 0.2, 0.26, 0.45, 0.55]
+  },
+  {
+    key: '图表3',
+    value: '3',
+    visible: false,
+    data: [0.1, 0.5, 0.4, 0.2, 0.26, 0.45, 0.55]
+  }
+])
+
+const chartRef = ref<any[]>([])
+
+interface ChartDataType {
+  key: string
+  value: string
+  visible: boolean
+  data: number[]
+}
+
+const initChart = (chartDom: HTMLElement, chartData: ChartDataType) => {
+  const myChart = echarts.init(chartDom)
+  const option = {
+    xAxis: {
+      type: 'category',
+      data: [0, 5, 10, 15, 20, 25, 30]
+    },
+    yAxis: {
+      type: 'value',
+      axisLabel: {
+        formatter: '{value} %'
+      }
+    },
+    legend: {
+      left: '',
+      top: '',
+      orient: 'horizontal',
+      icon: 'circle',
+      itemWidth: 10,
+      itemHeight: 10
+    },
+    series: [
+      {
+        name: chartData.key,
+        data: chartData.data,
+        type: 'line',
+        smooth: true,
+        itemStyle: { color: '#f642ee' },
+        lineStyle: {
+          color: '#f642ee'
+        }
+      }
+    ],
+    dataZoom: [
+      {
+        type: 'inside',
+        start: 0,
+        end: 100
+      },
+      {
+        start: 0,
+        end: 100
+      }
+    ],
+    grid: {
+      top: '40px',
+      left: '10px',
+      right: '20px',
+      bottom: '50px',
+      containLabel: true
+    }
+  }
+  // 配置你的图表
+  myChart.setOption(option)
+  return myChart
+}
+
+// 监听 checkedIds 的变化，更新图表的显示状态
+watch(
+  checkList,
+  (newVal, oldVal) => {
+    // 查询差集 diff 是选择的 checkbox 的value
+    let diff
+    if (newVal.length > oldVal.length) {
+      diff = newVal.filter((item) => !oldVal.includes(item))
+    } else {
+      diff = oldVal.filter((item) => !newVal.includes(item))
+    }
+
+    // 找到 value 对应的索引
+    const index = checkGroup.value.findIndex((item) => item.value === diff[0])
+
+    // 改变 visible 值
+    checkGroup.value[index].visible = newVal.length > oldVal.length
+
+    const chartDom = chartRef.value[index]
+    const myChart = echarts.getInstanceByDom(chartDom)
+
+    if (myChart) {
+      myChart?.dispose()
+    } else {
+      nextTick(() => {
+        chartInstances[index] = initChart(chartDom, checkGroup.value[index])
+      })
+    }
+
+    // 使用 ResizeObserver 监听每个图表的宽度变化
+    resizeObservers = chartRef.value.map((ref, index) => {
+      const observer = new ResizeObserver(() => resizeChart(index))
+      observer.observe(ref)
+      return observer
+    })
+  },
+  { deep: true }
+)
+
+// 更新图表数据
+const updateChart = (key: string, index: number) => {
+  const chartDom = chartRef.value[index]
+  const myChart = echarts.getInstanceByDom(chartDom)
+
+  if (myChart) {
+    myChart.setOption({
+      series: [
+        {
+          data: checkGroup.value[index].data,
+          itemStyle: { color: '#f642ee' },
+          lineStyle: {
+            color: '#f642ee'
+          }
+        }
+      ]
+    })
+  }
+}
+
+// 图表尺寸响应式
+const resizeChart = (index: number) => {
+  if (chartInstances[index] && checkGroup.value[index].visible) {
+    chartInstances[index].resize()
+  }
+}
+
+// 清理函数
+onBeforeUnmount(() => {
+  resizeObservers.forEach((observer: any) => observer.disconnect())
+})
+```
