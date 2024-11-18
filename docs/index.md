@@ -22,12 +22,12 @@ features:
   - icon: 🙈
     title: 面试宝典
     details: 整理常用基础知识点<small>（八股文）</small><br />只要八股文背的好，面试随便找
-    link: /nav
+    link: /dict/HTML&CSS/HTML%20理论篇
     linkText: 基础知识
   - icon: 🔩
     title: 技术知识
     details: 开发中的重点知识<br />简单易学、实用重要、可灵活复用
-    link: /nav
+    link: /front-end/工程化/Husky代码提交规范
     linkText: 知识碎片
   - icon: 📝
     title: 随手笔记
@@ -42,12 +42,12 @@ features:
   - icon: 🤡
     title: 大脑燃烧机
     details: 常在河边走，哪有不湿鞋<br/>修不完的 BUG，踩不完的坑，Salute！！！
-    link: /daily
+    link: /hole
     linkText: 踩坑记录
   - icon: 🙋‍♂
     title: 斜杠老 Baby。
     details: '<small class="bottom-small">Beao 的随手笔记</small>'
-    link: https://notes.fe-mm.com/mao
+    link: /nav
 ---
 
 <style>
